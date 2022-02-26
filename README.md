@@ -1,6 +1,6 @@
 # Simple Time Tracker
 
-An simple command line time tracker written as a babashka script.
+A simple command line time tracker written as a babashka script.
 
 Prerequisite:
 `Babashka` installed.
