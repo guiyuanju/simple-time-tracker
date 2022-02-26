@@ -208,7 +208,7 @@
    ["-s" "--status" "The running session."]
    ["-S" "--simple-status" "For easy connection with other tools."]
    ["-n" "--new" "Create a new session."]
-   ["-N" "--new-with-tags Tags" "Create a new session with tags,\" divided by comma, surrounded by double quote.\"e.g. \"tag1, tag2\""
+   ["-N" "--new-with-tags Tags" "Create a new session with tags, divided by comma, surrounded by double quote. e.g. \"tag1, tag2\""
     :parse-fn #(str/split % #",\s*")
     :validate [#(not (some str/blank? %)) "Tags shoud not be blank."]]
    ["-d" "--drop" "Drop the current session."]
