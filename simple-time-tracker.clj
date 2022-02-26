@@ -196,9 +196,14 @@
 (defn summary-of-today [records]
   (summary (records-since-today records)))
 
+(defn expand-home [s]
+  (if (.startsWith s "~")
+    (clojure.string/replace-first s "~" (System/getProperty "user.home"))
+    s))
+
 (def cli-options
   [["-f" "--data-file File" "The file to store all data."
-    :default "/home/las/.simple-time-tracker-data.csv"
+    :default "~/.simple-time-tracker-data.csv"
     :parse-fn #(if (re-find #"\s" %) (str "\"" % "\"") %)]
    ["-s" "--status" "The running session."]
    ["-S" "--simple-status" "The running session simple information."]
@@ -217,7 +222,7 @@
 
 (def options (:options cli-map))
 
-(def file (:data-file options))
+(def file (expand-home (:data-file options)))
 
 (def aut {:running [:drop
                     :complete
@@ -255,3 +260,4 @@
   (:resume options) (store file resume-paused-session :resume)
   (:today options) (println (str/join "\n" (sort (map #(str/join ": " %) (summary-of-today (get-records file))))))
   (:help options) (println (:summary cli-map)))
+
