@@ -6,7 +6,9 @@ Prerequisite:
 `Babashka` installed.
 
 Usage:
-Make the script executable, use the `-f` flag to point to your desired data storage file. (Store in CSV format)
+Make the script executable (Optionally rename it to a simple name like `stt`).
+Use the `-f` flag every time if you want to use a different data storage file. 
+Data is stored in CSV format.
 
 ```bash
 $ stt -h

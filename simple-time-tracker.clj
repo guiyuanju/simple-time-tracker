@@ -158,10 +158,10 @@
           tags (if (:tags record)
                  (str " (" (str/join ", " (:tags record)) ")")
                  nil)]
-      (str "A tracker is running: "
+      (str "Tracker is running: "
            (time-rep mili-seconds)
            tags))
-    "No tracker running."))
+    "Tracker isn't running."))
 
 (defn simple-status [records]
   (if-let [record (get-current-session records)]
@@ -206,9 +206,9 @@
     :default "~/.simple-time-tracker-data.csv"
     :parse-fn #(if (re-find #"\s" %) (str "\"" % "\"") %)]
    ["-s" "--status" "The running session."]
-   ["-S" "--simple-status" "The running session simple information."]
+   ["-S" "--simple-status" "For easy connection with other tools."]
    ["-n" "--new" "Create a new session."]
-   ["-N" "--new-with-tags Tags" "Create a new session with tags, divided by comma, surrounded by double quote. (\"tag1, tag2\")"
+   ["-N" "--new-with-tags Tags" "Create a new session with tags,\" divided by comma, surrounded by double quote.\"e.g. \"tag1, tag2\""
     :parse-fn #(str/split % #",\s*")
     :validate [#(not (some str/blank? %)) "Tags shoud not be blank."]]
    ["-d" "--drop" "Drop the current session."]
